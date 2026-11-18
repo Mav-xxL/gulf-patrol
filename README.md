@@ -6,7 +6,7 @@
 
 You start in the air with your wingman off your left wing. Follow a convoy through the dust, pull a loop over the coast, or switch to moonlight and fly by the glow of the harbor. To face two MiGs, open **Flight setup → Opponents**, select **MiG pair** and press **M**.
 
-[![落日双鹰 · Sundown Eagles — an F-15E over the Gulf at sunset](screenshots/sundown-eagles-social.png)](https://mav-xxl.github.io/gulf-patrol/)
+[![Sundown Eagles — two F-15Es over the Gulf at sunset](screenshots/sundown-eagles-social.png)](https://mav-xxl.github.io/gulf-patrol/)
 
 ## 第一次试飞 · Your first flight
 
