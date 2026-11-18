@@ -3,120 +3,437 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#172b30">
-<meta name="description" content="Fly a cel-shaded pixel-art F-15E Strike Eagle along a fictional Gulf coast by day, at sunset or under moonlight, winter 1991.">
-<title>Patrol — F-15E over the Gulf</title>
+<meta name="theme-color" content="#182024">
+<meta name="description" content="Fly an F-15E with your wingman over a pixel-art Gulf coast. Chase the sunset, skim the convoys or take on a pair of MiGs.">
+<title>落日双鹰 · Sundown Eagles</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23ff995e' d='M0 0h48v37L37 48H0z'/%3E%3Cpath fill='%23182024' transform='translate(3 7) scale(.87)' d='M1 6h17l6 10 6-10h17l-4 6H33l-2 3h10l-4 5h-9l-2 3h9l-4 5h-4l-3 5-3-5h-4l-4-5h9l-2-3h-9l-4-5h10l-2-3H5z'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PATROL — F-15E over the Gulf">
-<meta property="og:description" content="Skim a dusty convoy at sunset, loop above the coast, or take on a pair of MiG-29s with your wingman. Play this pixel-art flight game in your browser.">
+<meta property="og:title" content="落日双鹰 · Sundown Eagles">
+<meta property="og:description" content="让僚机跟紧，贴着海湾的落日飞一圈。拉起机头翻个筋斗，或迎战双米格。打开浏览器即可起飞。">
 <meta property="og:url" content="https://mav-xxl.github.io/gulf-patrol/">
-<meta property="og:image" content="https://mav-xxl.github.io/gulf-patrol/screenshots/patrol-time-and-views.png">
-<meta property="og:image:alt" content="Four in-game screenshots of a pixel-art F-15E over the Gulf by day, at sunset and under moonlight.">
+<meta property="og:image" content="https://mav-xxl.github.io/gulf-patrol/screenshots/sundown-eagles-social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="落日双鹰 Sundown Eagles，F-15E 战机飞过夕阳下的像素海湾。">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&amp;family=Silkscreen:wght@400;700&amp;display=swap" media="print" onload="this.media='all';window.dispatchEvent(new Event('patroltype'))">
 <style>
-:root{color-scheme:dark;--bg:#172b30;--panel:#263e43;--line:#435b59;--dim:#abb9ad;--ink:#f6edcf;--orange:#edc783;--mono:'IBM Plex Mono','Consolas',monospace;--pixel:'Silkscreen',var(--mono)}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink)}body{font:13px var(--mono)}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible{outline:2px solid #ffba77;outline-offset:3px}button:active{transform:translateY(1px)}button svg{pointer-events:none}svg{display:block}.icon{width:16px;height:16px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter}.deck{max-width:1920px;width:100%;margin:auto;padding:0 clamp(14px,2.55vw,46px);min-height:100svh;display:flex;flex-direction:column}.topbar{height:clamp(62px,8.3vh,86px);display:flex;align-items:center;justify-content:space-between;gap:15px}.brand,.cluster,.status,.sound,.modegroup,.loadout,.guides,.guide,.metrichead,.rhead,.sector,.tag,.tab,.tapact{display:flex;align-items:center}.brand{gap:12px}.insignia{width:42px;height:34px;color:var(--orange)}.brandtext{font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:850;letter-spacing:.14em}.edition{border-left:1px solid #526e69;padding-left:17px;margin-left:2px;color:#9fafab;font-size:10px;line-height:1.1;letter-spacing:.09em}.cluster{gap:22px}.status,.sound{font-size:10px;letter-spacing:.085em;font-weight:600;gap:8px}.status{color:#b8c4b9}.lamp{display:inline-block;width:6px;height:6px;background:#a4d6be;box-shadow:0 0 7px #a4d6be30}.sound{border:1px solid #56706b;background:#243e42;height:32px;padding:0 12px}.sound:hover,.tab:hover{background:#365454}.sound[aria-pressed=true]{color:#f2d28f}.primary{display:flex;flex-direction:column;flex:1;min-height:0}.glass{isolation:isolate;position:relative;overflow:hidden;flex:1;min-height:350px;outline:1px solid #71877a;outline-offset:-1px;border:4px solid #415a59;background:#45696b;touch-action:none;user-select:none;-webkit-user-select:none}.glass:focus{outline-color:#71877a}.render{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges;pointer-events:none}.bezel{position:absolute;z-index:4;inset:0;pointer-events:none;background:linear-gradient(#f1e2af,#f1e2af) left 7px top 7px/12px 2px no-repeat,linear-gradient(#f1e2af,#f1e2af) left 7px top 7px/2px 12px no-repeat,linear-gradient(#f1e2af,#f1e2af) right 7px top 7px/12px 2px no-repeat,linear-gradient(#f1e2af,#f1e2af) right 7px top 7px/2px 12px no-repeat,linear-gradient(#f1e2af,#f1e2af) left 7px bottom 7px/12px 2px no-repeat,linear-gradient(#f1e2af,#f1e2af) left 7px bottom 7px/2px 12px no-repeat,linear-gradient(#f1e2af,#f1e2af) right 7px bottom 7px/12px 2px no-repeat,linear-gradient(#f1e2af,#f1e2af) right 7px bottom 7px/2px 12px no-repeat;opacity:.8}
-.readouts{pointer-events:none;position:absolute;inset:0;--pad:clamp(16px,2.3vw,42px);color:#fff1d1}.postcard{position:absolute;left:var(--pad);top:var(--pad);transform-origin:top left;transition:opacity .4s}.tag{width:max-content;gap:7px;background:#203e46;color:#fff0c5;padding:5px 9px;font-size:9px;line-height:1;letter-spacing:.16em;font-weight:bold}.tag i{height:6px;width:6px;background:#e8c985}.title-art{display:block;width:clamp(174px,18.7vw,335px);height:auto;image-rendering:pixelated;margin:10px 0 9px}.sector{gap:8px;font-size:clamp(9px,.72vw,12px);font-weight:600;letter-spacing:.10em;text-shadow:1px 1px #203844,0 1px 3px #1d3840;color:#fff5d9}.sector .slash{color:#ffe0ac}.compass{position:absolute;right:var(--pad);top:var(--pad);padding:7px 10px 5px;background:#203a40d9;width:142px}.compassline{display:flex;align-items:center;justify-content:space-between;font-size:9px;letter-spacing:.11em;color:#d3dac7}.compassline b{color:#f7dea2;font-size:12px}.tape{display:block;width:122px;height:16px;image-rendering:pixelated}.instruments{position:absolute;bottom:var(--pad);left:var(--pad);display:flex;background:#203c42db;padding:11px 15px;gap:17px;border-left:3px solid var(--orange)}.metric+.metric{border-left:1px solid #627d74;padding-left:17px}.metrichead,.rhead{font-size:9px;font-weight:600;letter-spacing:.12em;color:#dadfca}.num{font-family:var(--pixel);font-weight:700;font-size:clamp(18px,1.65vw,28px);line-height:1.15;letter-spacing:-.06em;color:#fff2cc}.unit{font:9px var(--mono);margin-left:5px;color:#c8d5c1}.navbox{position:absolute;right:var(--pad);bottom:var(--pad);background:#1e383fef;border:1px solid #7e9383;padding:6px 7px 5px;width:122px}.rhead{justify-content:space-between;font-size:8px;margin-bottom:4px}.rhead span{color:#e8c985}.map{display:block;width:100%;height:66px;image-rendering:pixelated;border:1px solid #7e9484}.incockpit .postcard,.incockpit .instruments,.incockpit .navbox,.incockpit .compass{opacity:0}.boot{position:absolute;inset:0;display:grid;place-content:center;background:#203b41;z-index:6;text-align:center;gap:14px}.boot[hidden]{display:none}.boot label{font-size:12px;letter-spacing:.15em}.bar{height:5px;width:220px;max-width:70vw;background:#415d5d}.bar i{display:block;height:100%;background:var(--orange);width:0%;transition:width .16s}.alert{position:absolute;left:50%;top:19%;transform:translateX(-50%);padding:5px 10px;background:#233745ed;color:#ffe3ad;font:600 10px var(--mono);letter-spacing:.12em;opacity:0;transition:opacity .16s}.alert.show{opacity:1}.glass.incockpit .alert{top:13%}
-.switchboard{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:80px;background:#223b40;border:1px solid #405c5c;border-top:0;padding:12px clamp(14px,1.8vw,30px)}.modegroup,.loadout{gap:14px}.sectionlabel{color:#a2b7af;font-size:10px;font-weight:600;letter-spacing:.14em}.tabs{display:flex;gap:5px}.tab{height:36px;gap:8px;border:1px solid #4e6967;background:#294448;padding:0 13px;color:#e0e3cd;text-transform:uppercase;font-size:10px;letter-spacing:.065em;font-weight:600}.tab[aria-pressed=true]{background:#e9c988;color:#283838;border-color:#fee6ad;box-shadow:inset 0 -2px #b69d65}.tab .icon{width:17px;height:17px}.stores{display:flex;gap:4px;align-items:center}.store{width:9px;height:25px;display:block;color:#edcc91}.store.empty{color:#4e6565}.count{color:#f6eac9;font-size:14px;font-weight:600;letter-spacing:.02em}.count small{font-size:11px;color:#a6bbb1;font-weight:400}.guidebar{display:flex;align-items:center;justify-content:center;min-height:49px}.guides{gap:22px;color:#bdc9be;font-size:11px}.guide{gap:7px;white-space:nowrap}.guide .icon{width:15px;height:15px;color:#dadcc5}kbd{border:1px solid #4f6a65;border-bottom-width:2px;background:#283e42;padding:2px 4px;color:#e9e2c9;font:9px var(--mono);line-height:1.2;letter-spacing:.025em}.sep{color:#5e736d}.touchbar{display:none;position:absolute;bottom:12px;left:50%;transform:translateX(-50%);gap:5px;z-index:5}.tapact{justify-content:center;min-height:38px;min-width:63px;padding:0 9px;border:1px solid #f8c597;background:#233d44eb;font:600 9px var(--mono);letter-spacing:.04em;color:#ffe4c6;touch-action:none}.tapact:active{background:#ac694f}.touchhint{display:none}.hintword{white-space:nowrap}
-@media(min-width:721px){.deck{height:100svh;min-height:520px}}
-@media(max-height:660px) and (min-width:721px){.topbar{height:51px}.switchboard{min-height:58px}.guidebar{min-height:36px}.glass{min-height:280px}.readouts{--pad:16px}.navbox{width:102px}.map{height:48px}}
-@media(max-width:900px){.edition{display:none}.guides{gap:12px}.switchboard{gap:6px}.modegroup,.loadout{gap:9px}.tab{padding:0 10px}}
-@media(max-width:720px){.deck{min-height:100svh;height:100svh;padding:0 10px}.topbar{height:53px;flex-shrink:0}.brandtext{font-size:14px}.insignia{width:33px}.cluster{gap:12px}.status{font-size:8px}.sound{font-size:9px;padding:0 8px;height:30px}.glass{min-height:200px}.readouts{--pad:14px}.title-art{width:147px}.compass{width:94px;padding:5px 6px}.tape{width:82px;height:12px}.sector{font-size:8px;gap:5px}.tag{font-size:8px}.instruments{gap:8px;padding:7px 9px}.metric+.metric{padding-left:8px}.navbox{width:88px;padding:4px}.map{height:44px}.switchboard{min-height:65px;padding:8px}.modegroup,.loadout{flex-direction:column;align-items:flex-start;gap:4px}.loadout{display:grid;grid-template-columns:auto auto;gap:3px 6px}.loadout>.sectionlabel{grid-column:1/-1}.sectionlabel{font-size:8px}.stores{gap:1px}.store{height:16px;width:7px}.count{font-size:10px}.count small{font-size:8px}.tabs{gap:3px}.tab{padding:0 7px;height:30px;font-size:8px;gap:4px}.tab .icon{width:13px;height:13px}.guidebar{min-height:36px}.guides{flex-wrap:wrap;gap:5px 12px;justify-content:center;font-size:8px}.guides .sep{display:none}kbd{font-size:8px}}
-@media(pointer:coarse){.touchbar{display:flex}.desktophelp{display:none}.touchhint{display:flex}.instruments,.navbox{bottom:62px}}
-@media(max-width:480px){.topbar .status{display:none}.brandtext,.sound{white-space:nowrap}}
-@media(max-height:460px){.deck{min-height:100svh}.glass{min-height:150px}.topbar{height:36px}.switchboard{min-height:40px;padding:4px 10px}.guidebar{min-height:23px}.title-art{width:120px;margin:4px 0}.readouts{--pad:10px}.tag{font-size:7px}.compass,.navbox{display:none}.touchbar{left:auto;right:12px;transform:none}.instruments{bottom:10px}}
-.fittings{display:flex;align-items:center;gap:7px}
-.chooser{position:relative;display:inline-flex;align-items:center}
-.chooser::after{content:"";position:absolute;right:12px;width:5px;height:5px;border:solid #e9c988;border-width:0 1.5px 1.5px 0;transform:translateY(-2px) rotate(45deg);pointer-events:none}
-.chooser select,.tank-toggle{height:36px;border:1px solid #4e6967;border-radius:0;background:#294448;font:500 11px var(--mono);color:#ede7cd}
-.chooser select{appearance:none;padding:0 28px 0 11px;cursor:pointer}
-.tank-toggle{display:inline-flex;align-items:center;gap:7px;padding:0 11px;color:#b6c5b9;cursor:pointer}
-.tank-toggle svg{width:22px;height:12px;color:#90a69d}
-.tank-toggle[aria-pressed=true]{border-color:#8c9c82;color:#e7dfa9;background:#364e46}
-.tank-toggle[aria-pressed=true] svg{color:#e9c988}
-.inspect-toggle{height:36px;padding:0 9px;border:1px solid #4e6967;background:#294448;font:500 11px var(--mono);color:#dbe3cd;cursor:pointer}
-.inspect-toggle[aria-pressed=true]{border-color:#e9c988;color:#e7dfa9}
-.chooser select:focus-visible,.tank-toggle:focus-visible{outline:2px solid #f1d19a;outline-offset:2px}
-@media(min-width:721px) and (max-width:1050px){.switchboard .sectionlabel{display:none}.chooser select,.tank-toggle{font-size:10px}.switchboard{gap:8px}.tab{padding:0 8px}.loadout{gap:6px}}
-@media(max-width:720px){.switchboard{display:grid;grid-template-columns:1fr auto;gap:7px 6px}.modegroup{grid-area:1/1}.loadout{grid-area:1/2;justify-self:end}.fittings{grid-area:2/1/3/3;border-top:1px solid #435b59;padding-top:6px;gap:6px}.chooser select,.tank-toggle{height:30px;font-size:10px}.tank-toggle{padding:0 9px}.chooser select{padding-left:9px}}
-@media(max-width:360px){.store{width:5px}.tab{padding:0 5px}.loadout{column-gap:4px}.tank-toggle{white-space:nowrap}.tank-toggle svg{display:none}}
-@media(max-width:720px){.inspect-toggle{height:30px;margin-left:auto;font-size:10px}}
-@media(min-width:721px) and (max-width:800px){.switchboard{padding-left:10px;padding-right:10px}.switchboard .store{width:6px}.switchboard .tab{gap:4px}.fittings{gap:4px}}
-.glass.underway .postcard{opacity:0;transition:opacity .75s}
-.glass.surveying .postcard{opacity:0}
-.radio-caption{position:absolute;z-index:3;left:clamp(15px,2.3vw,42px);top:clamp(15px,2.3vw,42px);max-width:min(365px,calc(100% - 180px));padding:9px 13px 10px;border-left:2px solid #dfc58b;background:#1a373fed;color:#fff5d9;font:500 12px/1.45 var(--mono);pointer-events:none;opacity:0;transition:opacity .2s}
-.radio-caption.on-air{opacity:1}
-.radio-station{display:flex;align-items:center;gap:6px;margin-bottom:3px;color:#efcc8c;font-size:9px;font-weight:700;letter-spacing:.12em}
-.radio-station svg{height:10px;width:15px;fill:currentColor}
-.route-label{border-top:1px solid #597269;margin-top:4px;padding-top:4px;display:flex;align-items:center;gap:5px;font:600 8px/1.2 var(--mono);letter-spacing:.04em;color:#f0dba4}
-.route-label::before{content:"";width:4px;height:4px;border:1px solid currentColor;transform:rotate(45deg);flex-shrink:0}
+:root {
+  color-scheme: dark;
+  --shell: #182024;
+  --canvas-edge: #3a4448;
+  --paper: #f0ece1;
+  --accent: #ff995e;
+  --orange: var(--accent);
+  --mono: 'IBM Plex Mono', Consolas, 'Liberation Mono', ui-monospace, monospace;
+  --sans: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+* { box-sizing: border-box }
+html, body { margin: 0; min-height: 100%; color: var(--paper); background: var(--shell) }
+body { font: 14px var(--sans) }
+button, select, input { font: inherit }
+button, select { cursor: pointer }
+button { color: inherit }
+button:disabled, select:disabled { cursor: default }
+button svg { pointer-events: none }
+[hidden] { display: none !important }
+:focus-visible { outline: 2px solid #ed8046; outline-offset: 3px }
+svg { display: block }
+.icon { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round }
+kbd { font: 600 10px/1.2 var(--mono); border: 1px solid currentColor; border-radius: 3px; padding: 1px 4px }
+.deck {
+  --gutter: clamp(14px, 2.8vw, 54px);
+  width: 100%; max-width: 1920px; height: 100vh; height: 100svh; min-height: 470px;
+  margin-inline: auto; padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
+  padding-bottom: max(12px, env(safe-area-inset-bottom)); display: flex; flex-direction: column;
+}
+.masthead {
+  display: flex; align-items: center; justify-content: space-between; flex: none;
+  min-width: 0; height: clamp(70px, 8.7svh, 94px); gap: 18px;
+  padding-top: env(safe-area-inset-top);
+}
+.mast-brand { display: flex; align-items: center; gap: 13px; flex: none }
+.mast-emblem {
+  width: 45px; height: 44px; display: grid; place-items: center; background: var(--accent); color: #182024;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 78% 100%, 0 100%);
+}
+.mast-emblem svg { width: 33px; height: 26px }
+.mast-brand h1 {
+  margin: 0; font: italic 900 clamp(27px, 2.4vw, 42px)/.91 'Arial Black', 'Inter', Arial, sans-serif;
+  letter-spacing: -.065em; color: #faf5e9;
+}
+.mast-brand h1 span { display: inline-block }
+.mast-subtitle { display: block; margin-top: 5px; font: 600 9px/1.1 var(--mono); letter-spacing: .15em; color: #bcc5c4 }
+.mast-tools { display: flex; align-items: center; gap: clamp(10px, 1.35vw, 24px) }
+.status { display: inline-flex; align-items: center; gap: 8px; color: #bbc5bf; white-space: nowrap; font: 600 10px var(--mono); letter-spacing: .055em }
+.lamp { width: 6px; height: 6px; border-radius: 50%; background: #b7cf97 }
+.conditions {
+  display: flex; align-items: stretch; border: 1px solid #475256; border-radius: 5px;
+  background: #202a2e; color: #f2eee3;
+}
+.condition { position: relative; display: grid; grid-template-rows: auto auto; align-content: center; min-width: 100px; min-height: 44px }
+.condition + .condition { border-left: 1px solid #475256 }
+.condition-label { padding-left: 12px; color: #b5c1c2; font: 600 9px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; pointer-events: none }
+.condition-value {
+  appearance: none; min-width: 0; width: 100%; height: 100%; position: absolute; inset: 0;
+  border: 0; border-radius: 3px; background: transparent; color: #f4f1e7;
+  padding: 13px 27px 0 12px; font: 600 13px var(--sans);
+}
+.condition-label { align-self: start; transform: translateY(-8px) }
+.condition-value option { background: #273136; color: #f4f1e7 }
+.condition::after { content: ''; position: absolute; top: calc(50% - 3px); right: 12px; width: 5px; height: 5px; border: solid #bdc6c5; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); pointer-events: none }
+.condition:hover, .mast-sound:hover { background-color: #303c41 }
+.mast-sound {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 44px; min-width: 100px;
+  padding-inline: 12px; border: 1px solid #475256; border-radius: 5px;
+  background: transparent; color: #dce2da; font: 600 10px var(--mono); letter-spacing: .04em;
+}
+.mast-sound[aria-pressed=true] { border-color: var(--accent); color: var(--accent) }
+@media (max-width: 920px) { .status { display: none } }
+.primary { display: flex; flex: 1; flex-direction: column; min-height: 0 }
+.glass {
+  isolation: isolate; position: relative; flex: 1; min-height: 156px; overflow: hidden;
+  border: 1px solid var(--canvas-edge); border-bottom: 0; border-radius: 7px 7px 0 0; background: #34494e;
+  touch-action: none; user-select: none; -webkit-user-select: none;
+}
+.glass:focus:not(:focus-visible) { outline: none }
+.glass:focus-visible { outline-offset: -3px }
+.render { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; pointer-events: none }
+.boot { position: absolute; z-index: 6; inset: 0; display: grid; place-content: center; gap: 14px; background: #1c262a; color: var(--paper); text-align: center }
+.boot label { font: 600 12px var(--mono); letter-spacing: .12em }
+.bar { width: min(220px, 70vw); height: 3px; background: #485156 }
+.bar i { display: block; width: 0; height: 100%; background: var(--accent) }
+.flight-hints { display: flex; flex: none; align-items: center; gap: 22px; padding: 12px 1px 0; color: #b6c1c0; font: 500 11px/1.25 var(--mono) }
+.flight-hints span { align-items: center; gap: 6px }
+.mouse-hint { display: inline-flex }
+.touch-hint { display: none }
+.flight-hints kbd { color: #d4dbd6; border-color: #526066; font-size: 9px; text-transform: uppercase }
+.flight-hints i { font-style: normal; color: var(--accent) }
+@media (pointer: coarse) {
+  .flight-hints { justify-content: center; font-size: 10px; padding-top: 7px }
+  .mouse-hint { display: none } .touch-hint { display: inline-flex }
+}
+@media (max-width: 620px) and (pointer: fine) { .flight-hints { flex-wrap: wrap; gap: 5px 14px; padding-top: 7px; font-size: 10px } }
+@media (max-height: 520px) and (orientation: landscape) { .flight-hints { display: none } }
+@media (max-width: 760px) {
+  .deck { --gutter: 9px; padding-bottom: max(8px, env(safe-area-inset-bottom)) }
+  .masthead { height: 61px; gap: 6px }
+  .mast-brand { gap: 8px }
+  .mast-emblem { width: 33px; height: 34px }
+  .mast-emblem svg { width: 25px; height: 20px }
+  .mast-brand h1 { font-size: 24px }
+  .mast-subtitle { font-size: 7px; margin-top: 4px; letter-spacing: .075em }
+  .mast-tools { gap: 6px }
+  .status { display: none }
+  .condition { min-height: 38px; min-width: 71px }
+  .condition:first-child { min-width: 85px }
+  .condition-label { padding-left: 8px; font-size: 8px; transform: translateY(-7px) }
+  .condition-value { font-size: 11px; padding: 10px 17px 0 8px }
+  .condition::after { right: 7px; width: 4px; height: 4px }
+  .mast-sound { min-width: 36px; height: 40px; padding: 0 }
+  .mast-sound span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap }
+}
+@media (max-width: 590px) {
+  .mast-brand h1 { font-size: 17px; line-height: .87; letter-spacing: -.055em }
+  .mast-brand h1 span { display: block }
+  .mast-subtitle { display: none }
+}
+@media (max-width: 370px) {
+  .deck { --gutter: 5px }
+  .masthead { height: 54px }
+  .mast-brand { gap: 5px }
+  .mast-emblem { width: 24px; height: 28px }
+  .mast-emblem svg { width: 20px; height: 16px }
+  .mast-brand h1 { font-size: 16px }
+}
+@media (max-width: 335px) { .mast-emblem { display: none } }
+@media (orientation: landscape) and (max-height: 520px) {
+  .deck { --gutter: 9px; min-height: 280px; padding-bottom: max(5px, env(safe-area-inset-bottom)) }
+  .masthead { height: 44px }
+  .mast-brand { gap: 8px }
+  .mast-emblem { width: 30px; height: 30px }
+  .mast-emblem svg { width: 23px; height: 19px }
+  .mast-brand h1 { font-size: 23px }
+  .mast-subtitle { display: none }
+  .condition { min-height: 32px }
+  .mast-sound { height: 34px }
+}
+
+/* Flight overlays share the scene's inset and keep the centre of the glass clear. */
+.glass{
+  --hud-pad:clamp(13px,1.7vw,25px);
+  --hud-bottom:var(--hud-pad);
+  --hud-ink:#fff5dc;
+  --hud-dim:#c2c8c5;
+  --hud-amber:#ffc27b;
+  --hud-panel:rgba(17,25,35,.92);
+  --hud-line:rgba(186,202,203,.34);
+  --hud-mono:var(--mono,"Consolas",monospace);
+  container-name:flight-glass;
+  container-type:size;
+}
+.readouts{position:absolute;inset:0;pointer-events:none;color:var(--hud-ink)}
+.postcard{
+  position:absolute;isolation:isolate;left:var(--hud-pad);top:var(--hud-pad);padding:4px 13px 5px 12px;
+  border-left:2px solid var(--hud-amber);text-shadow:0 1px 3px #17212a;color:var(--hud-ink);
+}
+.postcard::before{
+  content:"";position:absolute;z-index:-1;inset:-9px -30px -9px -8px;
+  background:radial-gradient(ellipse at 28% 50%,#152030c9 0%,#152030a6 43%,transparent 75%);filter:blur(7px);
+}
+.postcard h2{
+  margin:5px 0 4px;font:italic 600 clamp(32px,3.3vw,53px)/.96 Georgia,"Times New Roman",serif;
+  letter-spacing:-.05em;
+}
+.postcard .flight-type,.postcard time{
+  display:block;font:600 10px/1.2 var(--hud-mono);letter-spacing:.13em;text-transform:uppercase;
+}
+.postcard .flight-type{color:#ffcf9a}.postcard time{font-size:9px;letter-spacing:.15em}
+.glass.underway .postcard,.glass.surveying .postcard,.glass.incockpit .postcard,
+.glass.duelling .postcard,.glass:has(.radio-caption.on-air) .postcard{visibility:hidden}
+
+.compass,.instruments,.navbox,.radio-caption,.duel-panel{
+  position:absolute;box-sizing:border-box;background:var(--hud-panel);color:var(--hud-ink);
+  border:1px solid var(--hud-line);font-family:var(--hud-mono);
+}
+.compass{
+  top:var(--hud-pad);right:var(--hud-pad);width:136px;padding:7px 9px 5px;
+}
+.compassline,.rhead{display:flex;align-items:center;justify-content:space-between}
+.compassline span,.metrichead,.rhead{
+  color:var(--hud-dim);font:600 9px/1.15 var(--hud-mono);letter-spacing:.1em;
+}
+.compassline b{font:700 14px/1 var(--hud-mono);font-variant-numeric:tabular-nums}
+.tape{display:block;width:100%;height:12px;margin-top:3px;image-rendering:pixelated}
+.instruments{
+  left:var(--hud-pad);bottom:var(--hud-bottom);display:flex;align-items:stretch;
+  border-left:2px solid var(--hud-amber);padding:9px 12px 7px;gap:12px;
+}
+.metric{white-space:nowrap}.metric+.metric{border-left:1px solid var(--hud-line);padding-left:12px}
+.metrichead{margin-bottom:3px}
+.num{
+  display:inline-block;min-width:3ch;text-align:right;font:650 clamp(18px,1.5vw,24px)/1 var(--hud-mono);
+  letter-spacing:-.055em;font-variant-numeric:tabular-nums;
+}
+.metric:nth-child(2) .num{min-width:4ch}
+.unit{color:var(--hud-dim);font:500 9px/1 var(--hud-mono);margin-left:4px}
+.navbox{
+  width:142px;right:var(--hud-pad);bottom:var(--hud-bottom);padding:7px 8px 5px;
+}
+.rhead{margin-bottom:5px}.rhead span{color:var(--hud-amber)}
+.map{display:block;width:100%;height:auto;aspect-ratio:106/66;image-rendering:pixelated;border:1px solid #344550}
+.chart-toggle{display:none}
+.chart-destination{
+  display:block;pointer-events:auto;cursor:pointer;width:100%;margin:3px 0 0;padding:4px 0;
+  border:0;border-radius:0;background:#151f2b;color:var(--hud-ink);
+  font:600 10px/1.15 var(--hud-mono);
+}
+.route-label{
+  display:flex;gap:6px;align-items:center;border-top:1px solid var(--hud-line);
+  padding-top:4px;color:var(--hud-amber);font:600 9px/1.2 var(--hud-mono);letter-spacing:.035em;
+}
+.route-label::before{content:"";width:5px;height:5px;flex:0 0 auto;border:1px solid var(--hud-amber);transform:rotate(45deg)}
 .route-label[hidden]{display:none}
-.chart-destination{display:block;width:100%;margin:4px 0 0;padding:3px 0;border:0;border-top:1px solid #597269;border-radius:0;background:#233d42;color:#eddbad;font:600 9px var(--mono);pointer-events:auto;cursor:pointer}
-.chart-destination:focus-visible{outline:1px solid #f1d19a}.glass.incockpit .navbox{visibility:hidden}
-@media(max-width:720px){.radio-caption{left:14px;top:14px;max-width:calc(100% - 132px);padding:6px 8px;font-size:10px}.radio-station{font-size:8px}.incockpit .radio-caption{max-width:min(76%,270px)}.route-label{font-size:7px;letter-spacing:0}}
-@media(max-height:460px){.radio-caption{top:9px;left:10px;max-width:38%;font-size:9px}.glass.underway .navbox{display:block;width:76px;padding:3px;bottom:8px}.glass.underway .map{height:27px}.glass.underway .navbox .rhead{display:none}}
-@media(max-height:460px) and (pointer:coarse){.glass.underway .navbox{right:10px;top:9px;bottom:auto}}
-/* Fine brass marks keep the flight instruments distinct from the painted landscape. */
-.postcard .tag{border-left:2px solid #eac788;clip-path:polygon(0 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%)}
-.postcard .tag i{width:4px;height:4px;transform:rotate(45deg)}
-.compass{border-top:1px solid #c0c4a0}
-.instruments{border-left-width:2px;border-top:1px solid #b8b994}
-.switchboard{box-shadow:inset 0 1px #789084}
-.sound:hover,.chooser select:hover,.tank-toggle:hover,.inspect-toggle:hover{border-color:#abc1aa}
-.tab[aria-pressed=true] .icon{stroke-width:1.8}
-.wing-toggle{height:36px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 10px;white-space:nowrap;border:1px solid #56706b;background:#294448;color:#dbe3cd;font:500 11px var(--mono)}
-.wing-toggle b{font:600 9px var(--mono);color:#b6c5b9}.wing-toggle[aria-pressed=true]{border-color:#8c9c82;background:#364e46}.wing-toggle[aria-pressed=true] b{color:#f4d38f}.wing-toggle:hover{border-color:#abc1aa}
-.wing-command{justify-content:space-between;touch-action:manipulation}.wing-command kbd{padding:1px 4px}.wing-command b{min-width:1.2em;text-align:center;color:#f5ce88;border-left:1px solid #56706b;padding-left:5px}
-.wing-command:disabled{opacity:.55;cursor:default}
-@media(pointer:coarse){.wing-command kbd{display:none}}
-@media(min-width:721px) and (max-width:1240px){.switchboard{display:grid;grid-template-columns:1fr auto;row-gap:6px;padding-block:7px}.modegroup{grid-area:1/1}.loadout{grid-area:1/2}.fittings{grid-area:2/1/3/3}}
-@media(max-width:720px){.wing-toggle{height:30px;font-size:10px}.fittings .inspect-toggle{margin-left:0}}
-@media(max-width:570px){.fittings{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr) minmax(0,.74fr);gap:4px 6px}.fittings .chooser select{width:100%;min-width:0}.fittings .tank-toggle{justify-content:center;white-space:nowrap}.wing-command{grid-column:span 2;justify-content:center}.wing-command b{margin-left:3px}}
-@media(max-width:455px){.fittings .tank-toggle svg{display:none}}
-.weather-control{display:flex;align-items:center;gap:8px;color:var(--dim);font:600 10px var(--mono);letter-spacing:.08em}
-.weather-control .chooser select{height:32px;background:#243e42;border-color:#56706b;font-size:11px}
-@media(max-width:820px){.weather-control>.weather-label{display:none}.topbar .cluster{gap:9px}}
-@media(max-width:480px){.topbar{gap:5px}.brand{gap:5px}.brandtext{font-size:12px;letter-spacing:.06em}.topbar .cluster{gap:5px}.weather-control .chooser select{height:30px;padding-left:6px;padding-right:20px;font-size:10px}.weather-control .chooser:after{right:7px}}
-@media(max-width:590px){.topbar .status{display:none}}
-@media(max-width:410px){.topbar .sound{width:31px;justify-content:center;padding:0}.topbar .sound span{position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden}.topbar .insignia{width:26px}}
-@media(max-width:345px){.topbar .insignia{display:none}}
-@media(prefers-reduced-motion:reduce){.postcard,.glass.underway .postcard,.radio-caption{transition:none}}
-.duel-panel{position:absolute;z-index:3;pointer-events:none;top:clamp(12px,2.3vw,42px);left:clamp(12px,2.3vw,42px);background:#21383dee;border-left:2px solid #df9678;padding:7px 10px;color:#f4e6c4;font:600 10px/1.45 var(--mono)}
-.duel-panel[hidden]{display:none}.duel-panel span{display:block;font-size:9px;color:#e7c698}.duel-panel strong{font-weight:600;letter-spacing:.05em}.duelling .postcard,.duelling .radio-caption{visibility:hidden}
-.duel-panel .track-state{color:#d1d1b3;letter-spacing:.07em}.duel-panel .track-state:empty{display:none}
-.duel-panel[data-locked=true] .track-state{color:#d4f6a5}
-.duel-panel[data-incoming=true]{border-color:#ffab79}.duel-panel[data-incoming=true] strong{color:#ffcf94}
-.duel-flare{pointer-events:auto;display:flex;align-items:center;gap:6px;min-height:24px;margin-top:4px;padding:1px 5px;border:1px solid #748781;background:#293f40;color:#f5dfac;font:600 9px var(--mono);cursor:pointer}
-.duel-flare kbd{font-size:8px}.duel-flare:disabled,.tapact:disabled{opacity:.55;cursor:default}
-.crash-watch{pointer-events:auto;display:flex;align-items:center;gap:6px;min-height:30px;margin-top:5px;padding:3px 7px;background:#394f4b;color:#ffdfaa;border:1px solid #baa781;font:600 10px var(--mono)}
-.crash-watch[hidden],.duel-panel:has(.crash-watch:not([hidden])) .duel-flare:disabled{display:none}
-.watching-mig .instruments,.watching-mig .compass,.watching-mig .navbox{visibility:hidden}
-@media(pointer:coarse){.crash-watch{min-height:38px}.crash-watch kbd{display:none}}
-.tapact.flare-action{display:none}.duelling .tapact.flare-action{display:flex;gap:5px}
-@media(pointer:coarse){.duel-flare{display:none}.duel-panel{max-width:42%}}
-#combatMode[aria-pressed=true]{background:#584744;border-color:#d59e80;color:#ffe7b6}
-@media(max-width:570px){.fittings .wing-command{grid-column:auto;padding-inline:2px;gap:3px}.wing-command kbd,#combatMode kbd{display:none}.fittings #combatMode{padding:0 2px}.duel-panel{font-size:9px;padding:5px 7px}.duel-panel span{font-size:8px}}
-@media(min-width:1241px) and (max-width:1440px){.switchboard{display:grid;grid-template-columns:1fr auto;row-gap:6px;padding-block:7px}.modegroup{grid-area:1/1}.loadout{grid-area:1/2}.fittings{grid-area:2/1/3/3}}
-.modegroup{flex-direction:row;align-items:center;flex-wrap:wrap;gap:6px 9px;min-width:0}
-.camera-distance{display:flex;align-items:center;gap:5px;color:#d6dcca;font:500 10px var(--mono)}
-.camera-distance input{width:77px;height:28px;margin:0;accent-color:#e9c988;cursor:pointer}
-.camera-distance output{min-width:3.1em;font-variant-numeric:tabular-nums}
-.camera-distance[hidden],#cameraSide[hidden]{display:none}
+.incockpit :is(.compass,.instruments,.navbox),.watching-mig :is(.compass,.instruments,.navbox){visibility:hidden}
+
+.radio-caption,.duel-panel{
+  z-index:3;left:var(--hud-pad);top:var(--hud-pad);max-width:min(330px,calc(100% - 170px));
+  padding:8px 11px 9px;border-left:2px solid var(--hud-amber);pointer-events:none;
+}
+.radio-caption{visibility:hidden;font:500 12px/1.4 var(--hud-mono)}
+.radio-caption.on-air{visibility:visible}
+.duelling .radio-caption,.watching-mig .radio-caption{visibility:hidden}
+.radio-station{display:flex;gap:7px;align-items:center;margin-bottom:3px;color:var(--hud-amber);font:600 9px/1.15 var(--hud-mono);letter-spacing:.1em}
+.radio-station svg{width:13px;height:10px;fill:currentColor}
+.duel-panel[hidden],.target-cycle[hidden],.crash-watch[hidden],.move-menu[hidden]{display:none}
+.duel-panel strong{display:block;font:700 12px/1.25 var(--hud-mono)}
+.duel-panel span{display:block;font:500 10px/1.4 var(--hud-mono);color:var(--hud-dim)}
+.duel-panel .track-state{color:var(--hud-amber)}
+.duel-panel .track-state:empty{display:none}
+.duel-panel[data-locked=true] .track-state{color:#c4e7af}
+.duel-panel[data-incoming=true]{border-left-color:#ff8d68}
+.duel-panel[data-incoming=true] strong{color:#ffae84}
+.duel-flare,.crash-watch,.target-cycle,.tapact{
+  display:inline-flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;
+  border:1px solid #7c7568;border-radius:2px;color:var(--hud-ink);background:#1c2834;
+  padding:4px 7px;font:600 10px/1.15 var(--hud-mono);touch-action:manipulation;
+}
+.duel-flare,.crash-watch{pointer-events:auto;margin:5px 4px 0 0;min-height:26px}
+.duel-flare b,.target-cycle{color:var(--hud-amber)}
+.duel-flare:disabled,.tapact:disabled{opacity:.48;cursor:default}
+.duel-panel:has(.crash-watch:not([hidden])) .duel-flare:disabled{display:none}
+.target-cycle{
+  position:absolute;right:var(--hud-pad);top:calc(var(--hud-pad) + 50px);z-index:4;min-height:30px;
+}
+.ground-reports{
+  position:absolute;left:var(--hud-pad);bottom:calc(var(--hud-bottom) + 62px);z-index:3;
+  display:grid;gap:3px;max-width:calc(100% - 2 * var(--hud-pad));pointer-events:none;
+}
+.ground-reports>span,.alert{
+  color:var(--hud-ink);border-left:2px solid var(--hud-amber);background:#192330f2;
+  font:600 10px/1.25 var(--hud-mono);padding:4px 7px;
+}
+.ground-reports>span{width:max-content;max-width:100%}.ground-reports>span.hit{border-color:#b2cfa1;color:#d3edc5}
+.watching-mig .ground-reports,.watching-mig .target-cycle{display:none}
+.alert{
+  position:absolute;z-index:3;left:50%;top:20%;transform:translateX(-50%);opacity:0;
+  max-width:70%;text-align:center;pointer-events:none;
+}
+.alert.show{opacity:1}
+.touchbar{display:none;position:absolute;z-index:5;bottom:8px;left:50%;transform:translateX(-50%);gap:5px;white-space:nowrap}
+.tapact{min-height:38px;padding:0 9px;touch-action:none;background:#192531f0}
+#touchFire{border-color:#ce9e6b;color:var(--hud-amber)}
+.tapact:active,.target-cycle:active,.duel-flare:active,.crash-watch:active{background:#5d4a36;color:#fff3d9}
+.tapact.flare-action{display:none}.duelling .tapact.flare-action{display:inline-flex}
 .move-picker{position:relative;display:flex}
-.move-menu{position:absolute;bottom:calc(100% + 5px);left:50%;transform:translateX(-50%);display:flex;gap:4px;padding:4px;background:#20383c;border:1px solid #6f8480}
-.move-menu[hidden]{display:none}.move-menu .tapact,#touchMove{min-width:48px}
-@media(min-width:721px) and (max-width:1160px){.desktophelp{flex-wrap:wrap;justify-content:center;row-gap:4px}.desktophelp .sep{display:none}}
-#cameraSide{height:36px;padding:0 8px;border:1px solid #4e6967;background:#294448;font:500 11px var(--mono)}
-@media(max-width:720px){.modegroup{gap:4px 6px}.camera-distance input{width:56px}.camera-distance{font-size:9px}#cameraSide{height:30px;font-size:10px}.modegroup>.sectionlabel{display:none}}
-.target-cycle{position:absolute;z-index:4;right:clamp(14px,2.3vw,42px);top:calc(clamp(14px,2.3vw,42px) + 48px);min-height:31px;padding:4px 9px;background:#203b42ed;color:#ffe1a4;border:1px solid #a39771;font:600 10px var(--mono);touch-action:manipulation}
-.target-cycle kbd{margin-right:4px}.target-cycle[hidden]{display:none}
-.ground-reports{position:absolute;z-index:3;left:clamp(14px,2.3vw,42px);bottom:calc(clamp(14px,2.3vw,42px) + 62px);display:grid;gap:3px;pointer-events:none}
-.ground-reports>span{width:max-content;max-width:100%;color:#f1dcaf;background:#1d343de8;border-left:2px solid #e6b576;padding:4px 7px;font:600 10px/1.25 var(--mono)}
-.ground-reports>span.hit{color:#daf1ba;border-color:#b9d69f}.watching-mig .ground-reports,.watching-mig .target-cycle{display:none}
-#storeReadout{white-space:nowrap}.store.next{color:#e4f9c2;border-bottom:1px solid currentColor}
-@media(pointer:coarse){.target-cycle{min-height:40px}.target-cycle kbd{display:none}.ground-reports{bottom:119px}.ground-reports>span{font-size:9px}}
-@media(max-height:460px){.target-cycle{top:10px;right:12px}.ground-reports{bottom:61px}}
+.move-menu{display:flex;position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);gap:4px;padding:3px;background:#141d28;border:1px solid var(--hud-line)}
+.move-menu .tapact{padding:0 8px}
+.glass :is(.chart-destination,.duel-flare,.crash-watch,.target-cycle,.tapact):focus-visible{outline:2px solid var(--hud-amber);outline-offset:2px}
+@media(pointer:coarse){
+  .glass{--hud-bottom:55px}
+  .touchbar{display:flex}.target-cycle,.crash-watch{min-height:38px}
+  .duel-flare,.crash-watch kbd,.target-cycle kbd{display:none}
+}
+@container flight-glass (max-width:610px){
+  .compass{width:104px;padding:5px 7px 3px}.compassline b{font-size:12px}
+  .tape{height:10px;margin-top:2px}.navbox{width:106px;padding:5px}
+  .instruments{gap:8px;padding:7px 8px 6px}.metric+.metric{padding-left:8px}
+  .metrichead,.rhead{font-size:8px}.num{font-size:18px}.unit{font-size:8px;margin-left:3px}
+  .postcard h2{font-size:34px}.postcard .flight-type,.postcard time{font-size:8px}
+  .radio-caption,.duel-panel{max-width:calc(100% - 137px);padding:6px 8px 7px}
+  .radio-caption{font-size:11px}.duel-panel strong{font-size:11px}
+  .target-cycle{top:calc(var(--hud-pad) + 39px)}
+  .ground-reports{bottom:calc(var(--hud-bottom) + 49px)}
+  .chart-destination,.route-label{font-size:9px}
+}
+@container flight-glass (max-width:365px){
+  .compass{width:82px}.instruments{gap:6px;padding:5px 6px}
+  .metric+.metric{padding-left:6px}.num{font-size:16px}.navbox{width:93px}
+  .radio-caption,.duel-panel{max-width:calc(100% - 110px)}
+  .tapact{font-size:9px;padding:0 6px}.touchbar{gap:4px}
+}
+@container flight-glass (max-width:610px) and (min-height:360px){
+  .navbox .rhead{display:none}
+  .chart-toggle{
+    display:flex;min-height:32px;width:100%;align-items:center;justify-content:space-between;
+    border:0;border-bottom:1px solid var(--hud-line);padding:0;background:transparent;
+    color:var(--hud-ink);font:600 9px/1.1 var(--hud-mono);letter-spacing:.04em;pointer-events:auto;
+  }
+  .chart-toggle::after{content:"+";padding-left:3px;color:var(--hud-amber);font-size:15px}
+  .chart-toggle[aria-expanded=true]::after{content:"−"}
+  .chart-toggle[aria-expanded=false]+.map{display:none}
+  .chart-toggle[aria-expanded=true]+.map{margin-top:4px}
+  .chart-destination{min-height:27px}
+}
+@container flight-glass (max-height:290px){
+  .postcard{padding:3px 10px}.postcard h2{font-size:26px;margin:3px 0}
+  .compass{padding:4px 7px;width:99px}.compassline b{font-size:11px}.tape{height:8px;margin-top:0}
+  .instruments{left:9px;bottom:8px;padding:4px 6px;gap:6px}.num{font-size:16px}
+  .navbox{right:9px;bottom:8px;width:91px;padding:4px}
+  .map{height:32px;aspect-ratio:auto}.rhead{font-size:7px;margin-bottom:2px}
+  .chart-destination,.route-label{font-size:8px}.ground-reports{left:9px;bottom:47px}
+  .target-cycle{top:calc(var(--hud-pad) + 30px);min-height:25px}
+  .alert{top:38%}
+}
+@media(pointer:coarse){
+  @container flight-glass (max-height:290px){
+    .touchbar{left:auto;right:9px;transform:none}.tapact{min-height:34px}
+    .navbox{bottom:47px}.duelling .navbox{display:none}
+    .target-cycle{right:calc(var(--hud-pad) + 106px);top:var(--hud-pad);min-height:33px}
+  }
+}
+
+.flight-console{
+  --fc-paper:#e5e2d8;--fc-light:#f4f1e8;--fc-ink:#292d2b;--fc-muted:#555b56;
+  --fc-rule:#b6b7ab;--fc-orange:#ec7942;
+  position:relative;z-index:8;flex:none;color:var(--fc-ink);background:var(--fc-paper);
+  border:1px solid var(--fc-rule);border-top:0;border-radius:0 0 6px 6px;color-scheme:light;
+  font:600 13px var(--mono,'Consolas',monospace);
+}
+.flight-console [hidden]{display:none!important}
+.fc-strip{display:grid;grid-template-columns:minmax(108px,1fr) minmax(135px,1.15fr) minmax(115px,.8fr) auto auto auto;align-items:center;gap:clamp(10px,1.6vw,28px);padding:12px clamp(12px,1.7vw,28px)}
+.fc-field,.fc-rack,.fc-select{display:block;min-width:0}
+.fc-label,.fc-panel h3{display:flex;align-items:center;gap:7px;margin:0 0 5px;font:700 10px/1 var(--mono,'Consolas',monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--fc-muted)}
+.flight-console kbd{display:inline-block;background:transparent;border:1px solid #a5a99d;border-radius:2px;box-shadow:none;padding:1px 3px;font:600 9px/1 var(--mono,'Consolas',monospace);letter-spacing:0;text-transform:uppercase;color:inherit}
+.fc-select{position:relative}
+.fc-select:after{content:"";position:absolute;right:11px;top:50%;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-75%) rotate(45deg);pointer-events:none}
+.fc-select select,.fc-key,.fc-option,.fc-close{border:1px solid #9fa397;border-radius:3px;background:var(--fc-light);color:var(--fc-ink);font:inherit;cursor:pointer}
+.fc-select select{display:block;width:100%;height:33px;padding:0 25px 0 9px;appearance:none;font-size:12px}
+.fc-rack{border-inline:1px solid var(--fc-rule);padding-inline:clamp(10px,1.3vw,22px)}
+.fc-ammunition{display:flex;align-items:center;gap:4px;height:33px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.fc-ammunition>b{font:bold 24px/1 var(--mono,'Consolas',monospace);letter-spacing:-.06em}
+.fc-ammunition>small{font-size:10px;color:var(--fc-muted)}
+.flight-console #storeReadout{white-space:nowrap}
+.flight-console #stores{display:flex;align-items:center;gap:3px;margin-left:5px}
+.flight-console .store{display:block;width:6px;height:18px;color:#5a6058;fill:currentColor}
+.flight-console .store.next{color:#a6451e;border-bottom:2px solid currentColor}
+.flight-console .store.empty{color:#a8aba0}
+.fc-key{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:39px;padding:0 12px;white-space:nowrap;font-size:12px}
+.fc-key svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
+.fc-command b{min-width:1.35em;padding-left:6px;border-left:1px solid var(--fc-rule);font:inherit;font-variant-numeric:tabular-nums}
+.fc-duel{background:var(--fc-orange);border-color:#ab552e;color:#241f1b}
+.fc-duel kbd{border-color:#9b5339}
+.fc-lamp{width:7px;height:7px;display:block;border:1px solid #744027;border-radius:100%}
+.fc-duel[aria-pressed=true]{background:#343b34;border-color:#343b34;color:#faf1dc}
+.fc-duel[aria-pressed=true] .fc-lamp{background:var(--fc-orange);border-color:var(--fc-orange)}
+.fc-duel[aria-pressed=true] kbd{border-color:#8f9687}
+.fc-setup{background:#d9dacf}
+.fc-setup[aria-expanded=true]{background:#40463f;border-color:#40463f;color:white}
+.flight-console button:disabled,.flight-console select:disabled{opacity:.5;cursor:default}
+.flight-console :is(select,button,input):focus-visible{outline:2px solid #a3441b;outline-offset:2px}
+@media(hover:hover){.flight-console :is(button,select):enabled:hover{border-color:#555c51;box-shadow:inset 0 0 0 1px #555c5160}}
+.fc-panel{position:absolute;right:10px;bottom:calc(100% + 8px);width:min(433px,calc(100% - 20px));max-height:min(76svh,500px);overflow:auto;overscroll-behavior:contain;background:var(--fc-light);border:1px solid #858a7e;border-radius:4px;box-shadow:0 6px 20px #17201f48;padding:14px}
+.fc-panel-head,.fc-options,.fc-opponents,.fc-help-toggle{display:flex;align-items:center}
+.fc-panel-head{justify-content:space-between;border-bottom:1px solid var(--fc-rule);padding-bottom:9px}
+.fc-panel h2{margin:0;color:var(--fc-ink);font:700 19px/1.15 Arial,sans-serif;letter-spacing:-.025em}
+.fc-close{width:32px;height:32px;line-height:1;font-size:20px}
+.fc-systems{display:grid;grid-template-columns:1fr 1.1fr;gap:0;margin:14px 0}
+.fc-systems>section{min-width:0}
+.fc-systems>section+section{padding-left:12px;margin-left:12px;border-left:1px solid var(--fc-rule)}
+.fc-panel h3{margin:2px 0 10px}
+.fc-distance{display:grid;grid-template-columns:1fr auto;gap:5px;font-size:11px}
+.fc-distance output{font-variant-numeric:tabular-nums;color:var(--fc-muted)}
+.fc-distance input{width:100%;grid-column:1/-1;margin:0;height:27px;accent-color:#98431d;cursor:pointer}
+.fc-options{gap:5px;flex-wrap:wrap}
+.fc-option{min-height:31px;padding:0 7px;font-size:11px}
+.fc-option[aria-pressed=true]{border-color:#858f79;background:#dce2d2}
+.fc-option b{font-size:9px}
+.fc-opponents{gap:6px;margin-top:8px;flex-wrap:wrap;font-size:11px}
+.fc-opponents .fc-select{flex:1;min-width:95px}
+.fc-opponents select{height:31px;font-size:11px}
+.fc-help-toggle{justify-content:space-between;width:100%;color:var(--fc-ink);font:inherit;font-size:12px;cursor:pointer;padding:9px 0 1px;background:none;border:0;border-top:1px solid var(--fc-rule)}
+.fc-help-toggle span{font-size:16px}
+.fc-help p{margin:10px 0;color:var(--fc-muted);font-size:11px;line-height:1.45}
+.fc-help dl{display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;margin:0;font-size:10px}
+.fc-help dl>div{display:flex;gap:5px}.fc-help dt{color:#754021}.fc-help dd{margin:0}
+.fc-touch-help,.fc-help dl.fc-touch-help{display:none}
+@media(max-width:1000px){
+  .fc-strip{gap:8px;padding:9px 10px;grid-template-columns:minmax(88px,1fr) minmax(102px,1.15fr) minmax(83px,.85fr) auto auto auto}
+  .fc-key{padding:0 8px;gap:5px}.fc-rack{padding-inline:8px}
+  .fc-key kbd{display:none}.flight-console #stores{gap:2px;margin-left:2px}
+}
+@media(min-width:681px) and (max-width:760px){.fc-rack{padding-inline:4px}.fc-rack .fc-label{font-size:9px;letter-spacing:.06em}.flight-console .store{width:5px}}
+@media(min-width:681px) and (max-width:760px){
+  .fc-rack{padding-inline:4px}.fc-rack .fc-label{font-size:9px;letter-spacing:.06em}
+  .fc-ammunition{gap:2px}.fc-ammunition>b{font-size:20px}.fc-ammunition>small{font-size:9px}
+  .flight-console #stores{gap:1px;margin-left:0}.flight-console .store{width:5px}
+}
+@media(max-width:680px){
+  .fc-strip{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px 6px;padding:8px}
+  .fc-label{font-size:9px;margin-bottom:4px}.fc-label kbd{display:none}
+  .fc-key{min-height:35px;font-size:11px;padding-inline:4px}
+  .fc-rack{padding:0 0 0 6px;border-right:0}.fc-ammunition{height:31px}
+  .fc-ammunition>b{font-size:21px}.fc-select select{height:31px;font-size:11px}
+  .fc-setup svg{width:14px;height:14px}.fc-strip .fc-field{align-self:end}
+  .fc-panel{right:4px;width:min(420px,calc(100% - 8px))}
+}
+@media(max-width:375px){.fc-key{font-size:10px}.fc-command b{padding-left:3px}.flight-console #stores{gap:1px}.flight-console .store{width:5px;height:15px}.fc-ammunition{gap:2px}.fc-systems>section+section{padding-left:8px;margin-left:8px}}
+@media(pointer:coarse){
+  .fc-panel{bottom:calc(100% + 63px);max-height:min(450px,calc(100svh - 225px))}
+  .fc-key{min-height:40px}.fc-touch-help{display:block}.fc-help dl.fc-touch-help{display:grid}
+  .fc-mouse-help,.fc-help dl.fc-mouse-help{display:none}
+}
+@media(max-height:460px) and (min-width:681px){.fc-strip{padding-block:5px}.fc-label{margin-bottom:3px}.fc-select select{height:28px}.fc-key{min-height:33px}.fc-panel{max-height:calc(100svh - 143px)}}
 </style>
 </head>
 <body>
@@ -132,52 +449,107 @@
 <symbol id="i-bomb" viewBox="0 0 9 25"><path fill="currentColor" d="M4 1h1v2h1v2h1v3h1v7H7v3H6v2l2 2v2H1v-2l2-2v-2H2v-3H1V8h1V5h1V3h1z"/></symbol>
 </defs></svg>
 <main class="deck">
-<header class="topbar"><div class="brand"><svg class="insignia" viewBox="0 0 48 36" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M1 6h17l6 10 6-10h17l-4 6H33l-2 3h10l-4 5h-9l-2 3h9l-4 5h-4l-3 5-3-5h-4l-4-5h9l-2-3h-9l-4-5h10l-2-3H5z"/></svg><div class="brandtext">FLIGHT DECK</div><span class="edition">ARCADE FLIGHT SIMULATOR</span></div>
-<div class="cluster"><span class="status"><i class="lamp"></i> SYSTEM ONLINE</span>
-<label class="weather-control"><span class="weather-label">WEATHER</span><span class="chooser"><select id="weatherSelect" aria-label="Weather"><option value="haze" selected>Dust haze</option><option value="rain">Rain</option><option value="sand">Sandstorm</option></select></span></label>
-<label class="weather-control"><span class="weather-label">TIME</span><span class="chooser"><select id="timeSelect" aria-label="Time of day"><option value="day">Day</option><option value="sunset" selected>Sunset</option><option value="night">Night</option></select></span></label>
-<button class="sound" id="sound" type="button" aria-pressed="false" title="Toggle synthesized audio"><svg class="icon"><use href="#i-volume"/></svg><span>SOUND OFF</span></button></div></header>
-<section class="primary" aria-label="Patrol flying toy">
+<header class="masthead">
+  <div class="mast-brand">
+    <span class="mast-emblem" aria-hidden="true"><svg viewBox="0 0 48 36"><path fill="currentColor" d="M1 6h17l6 10 6-10h17l-4 6H33l-2 3h10l-4 5h-9l-2 3h9l-4 5h-4l-3 5-3-5h-4l-4-5h9l-2-3h-9l-4-5h10l-2-3H5z"/></svg></span>
+    <div><h1><span>SUNDOWN</span> <span>EAGLES</span></h1><span class="mast-subtitle"><span lang="zh-CN">落日双鹰</span> · FLIGHT SIMULATOR</span></div>
+  </div>
+  <div class="mast-tools">
+    <span class="status" role="status"><i class="lamp" aria-hidden="true"></i> INITIALIZING</span>
+    <div class="conditions" role="group" aria-label="Flight conditions">
+      <label class="condition"><span class="condition-label">Weather</span><select class="condition-value" id="weatherSelect" aria-label="Weather"><option value="haze" selected>Dust haze</option><option value="rain">Rain</option><option value="sand">Sandstorm</option></select></label>
+      <label class="condition"><span class="condition-label">Time</span><select class="condition-value" id="timeSelect" aria-label="Time of day"><option value="day">Day</option><option value="sunset" selected>Sunset</option><option value="night">Night</option></select></label>
+    </div>
+    <button class="mast-sound" id="sound" type="button" aria-pressed="false" title="Toggle synthesized audio"><svg class="icon" aria-hidden="true"><use href="#i-volume"/></svg><span>SOUND OFF</span></button>
+  </div>
+</header>
+<section class="primary" aria-label="Flight deck">
 <div class="glass" id="glass" tabindex="0" aria-label="Flight viewport. Move the mouse or drag to steer.">
 <canvas id="scene" class="render" aria-label="A pixel-art F-15E patrol over a desert gulf coast"></canvas><canvas id="cockpit" class="render" aria-hidden="true"></canvas>
 <div class="readouts">
-<div class="postcard"><span class="tag"><i></i> F-15E STRIKE EAGLE</span><h1 style="margin:0"><canvas id="wordmark" class="title-art" width="216" height="41" aria-label="Patrol">PATROL</canvas></h1><div class="sector">GULF COAST <span class="slash">//</span> FEB 1991</div></div>
+<div class="postcard" id="postcard">
+  <span class="flight-type">F-15E Strike Eagle</span>
+  <h2>Gulf Coast</h2>
+  <time datetime="1991-02">Feb 1991</time>
+</div>
 <div class="compass"><div class="compassline"><span>HDG</span><b id="hdg">000° N</b></div><canvas class="tape" id="tape" width="122" height="16"></canvas></div>
 <div class="instruments"><div class="metric"><div class="metrichead">AIRSPEED</div><span id="ias" class="num">229</span><span class="unit">KTS</span></div><div class="metric"><div class="metrichead">ALTITUDE</div><span id="alt" class="num">787</span><span class="unit">FT</span></div></div>
-<div class="navbox"><div class="rhead">COAST CHART <span>N ↑</span></div><canvas class="map" id="navmap" width="106" height="66" role="img" aria-label="Local coast chart with aircraft, destination and landmarks"></canvas><select id="chartDestination" class="chart-destination" aria-label="Chart destination" title="Choose a destination"><option value="coast">Coast patrol</option><option value="highway">Highway 80</option><option value="0">Salt Flats Airstrip</option><option value="1">West Road Depot</option><option value="2">North Relay</option></select><div class="route-label" id="patrolLeg" hidden></div></div>
+<div class="navbox">
+  <div class="rhead">COAST CHART <span>N ↑</span></div>
+  <button class="chart-toggle" type="button" id="chartToggle" aria-expanded="false" aria-controls="navmap">Coast chart</button>
+  <canvas class="map" id="navmap" width="106" height="66" role="img" aria-label="Local coast chart with aircraft, destination and landmarks"></canvas>
+  <select id="chartDestination" class="chart-destination" aria-label="Chart destination" title="Choose a destination"><option value="coast">Coast patrol</option><option value="highway">Highway 80</option><option value="0">Salt Flats Airstrip</option><option value="1">West Road Depot</option><option value="2">North Relay</option></select>
+  <div class="route-label" id="patrolLeg" hidden></div>
+</div>
 </div>
 <div id="radioCaption" class="radio-caption" role="status" aria-live="polite" aria-atomic="true"><div class="radio-station"><svg viewBox="0 0 15 10" aria-hidden="true"><path d="M0 4h2v2H0zM3 2h2v6H3zM6 0h2v10H6zM9 2h2v6H9zM12 4h2v2h-2z"/></svg><span id="radioSpeaker"></span></div><span id="radioLine"></span></div>
-<div class="bezel"></div><div id="alert" class="alert" role="status"></div>
+<div id="alert" class="alert" role="status"></div>
 <button type="button" class="target-cycle" id="cycleTarget" aria-keyshortcuts="T" aria-label="Select next target" hidden><kbd aria-hidden="true">T</kbd> TARGET</button>
 <div id="groundReports" class="ground-reports" role="log" aria-live="polite" aria-relevant="additions"></div>
 <div class="duel-panel" id="duelPanel" hidden><strong id="duelStatus" role="status">AIR DUEL</strong><span id="duelScore"></span><span class="track-state" id="duelTrack" role="status"></span><button type="button" class="duel-flare" id="duelFlare" aria-keyshortcuts="C" title="Release a flare burst (C)"><kbd aria-hidden="true">C</kbd> FLARE <b>2</b></button><button type="button" id="watchMig" class="crash-watch" aria-keyshortcuts="V" aria-pressed="false" hidden><kbd aria-hidden="true">V</kbd><b>Watch MiG</b></button></div>
 <div class="touchbar"><button class="tapact" id="touchRoll" title="Tap to roll, hold for afterburner">ROLL / BOOST</button><div class="move-picker"><button type="button" class="tapact" id="touchMove" aria-expanded="false" aria-controls="moveMenu">MOVE</button><div class="move-menu" id="moveMenu" role="group" aria-label="Flight maneuvers" hidden><button type="button" class="tapact" data-move="turn">TURN</button><button type="button" class="tapact" data-move="loop">LOOP</button></div></div><button class="tapact" id="touchFire">FIRE</button><button type="button" class="tapact flare-action" id="touchFlare" title="Release a flare burst">FLARE <b>2</b></button></div>
 <div class="boot" id="boot"><label id="boottext">CHARTING THE GULF COAST</label><div class="bar" role="progressbar" aria-label="Generating terrain" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="progress"></i></div></div>
 </div>
-<div class="switchboard">
-  <div class="modegroup" role="group" aria-label="Camera settings">
-    <label class="sectionlabel" for="cameraView">CAMERA</label>
-    <span class="chooser"><select id="cameraView" aria-label="Camera view" title="Camera view (Space to cycle while flying)">
-      <option value="0">Overhead</option><option value="1" selected>Chase</option><option value="2">Cockpit</option><option value="3">Shoulder</option><option value="4">Side</option><option value="inspect" disabled hidden>Inspect</option>
-    </select></span>
-    <button type="button" id="cameraSide" aria-label="Side camera on left. Switch to right" hidden>Left side</button>
-    <label class="camera-distance" id="cameraDistanceControl" title="Camera distance · scroll over the flight viewport to adjust">
-      <span>Distance</span><input type="range" id="cameraDistance" aria-label="Camera distance" min="70" max="175" step="5" value="100"><output id="distanceValue" for="cameraDistance">100%</output>
+<div class="flight-console" id="flightConsole" role="group" aria-label="Flight controls">
+  <div class="fc-strip">
+    <label class="fc-field" for="cameraView">
+      <span class="fc-label">Camera <kbd>Space</kbd></span>
+      <span class="fc-select"><select id="cameraView" aria-label="Camera view" title="Camera view (Space to cycle while flying)">
+        <option value="0">Overhead</option><option value="1" selected>Chase</option><option value="2">Cockpit</option><option value="3">Shoulder</option><option value="4">Side</option><option value="inspect" disabled hidden>Inspect</option>
+      </select></span>
     </label>
+    <label class="fc-field" for="storeSelect">
+      <span class="fc-label">Loadout <kbd>W</kbd></span>
+      <span class="fc-select"><select id="storeSelect" aria-label="Flight loadout" aria-keyshortcuts="W">
+        <option value="3" selected>Mixed</option><optgroup label="Air-to-air"><option value="0" title="AIM-9 Sidewinder">A/A · AIM-9</option><option value="1" title="AIM-7 Sparrow">A/A · AIM-7</option></optgroup><optgroup label="Air-to-ground"><option value="2" title="AGM-65 Maverick">A/G · AGM-65</option><option value="4">Bomb · Mk 82</option></optgroup>
+      </select></span>
+    </label>
+    <div class="fc-rack" aria-label="Stores remaining">
+      <span id="storeReadout" class="fc-label">NEXT · A/G</span>
+      <div class="fc-ammunition"><b id="ammo">04</b><small>/ 04</small><span id="stores" aria-hidden="true"></span></div>
+    </div>
+    <button type="button" class="fc-key fc-command" id="wingFire" aria-keyshortcuts="G" title="Order the wingman to release one store (G)" disabled>
+      <kbd aria-hidden="true">G</kbd><span id="wingAction">Wingman fire</span><b id="wingAmmo">4</b>
+    </button>
+    <button type="button" class="fc-key fc-duel" id="combatMode" aria-pressed="false" aria-keyshortcuts="M" title="Toggle air duel (M)" disabled>
+      <span class="fc-lamp" aria-hidden="true"></span>Air duel<kbd aria-hidden="true">M</kbd>
+    </button>
+    <button type="button" class="fc-key fc-setup" id="flightSetupToggle" aria-expanded="false" aria-controls="flightSetupPanel">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 5h7m5 0h4M2 14h2m5 0h9M9 3h4v4H9zM5 12h4v4H5z"/></svg>Flight setup
+    </button>
   </div>
-  <div class="fittings" role="group" aria-label="Aircraft and formation">
-    <label class="chooser" title="Change the flight's loadout (W)"><select id="storeSelect" aria-label="Flight loadout" aria-keyshortcuts="W"><option value="3" selected>Mixed loadout</option><optgroup label="Air-to-air"><option value="0" title="AIM-9 Sidewinder">A/A · AIM-9</option><option value="1" title="AIM-7 Sparrow">A/A · AIM-7</option></optgroup><optgroup label="Air-to-ground"><option value="2" title="AGM-65 Maverick">A/G · AGM-65</option><option value="4">Bomb · Mk 82</option></optgroup></select></label>
-    <button type="button" class="tank-toggle" id="tankToggle" aria-pressed="true" title="Show or hide both external fuel tanks"><svg viewBox="0 0 24 12" fill="none" aria-hidden="true"><path d="M9 4V2h5v2M1 7l5-2h10l6 2-6 2H6Z" stroke="currentColor" stroke-width="1.5"/><path d="M5 7h14" stroke="currentColor"/></svg>Wing tanks</button>
-    <button type="button" class="inspect-toggle" id="inspectStores" aria-pressed="false" title="Look under the aircraft to inspect its stores">Inspect</button>
-    <button type="button" class="wing-toggle" id="wingToggle" aria-label="Wingman follow" aria-pressed="true" title="Fly in formation or solo" disabled>Wingman <b aria-hidden="true">ON</b></button>
-    <button type="button" class="wing-toggle wing-command" id="wingFire" aria-keyshortcuts="G" title="Order the wingman to release one store (G)" disabled><kbd aria-hidden="true">G</kbd> <span id="wingAction">Wingman fire</span> <b id="wingAmmo">4</b></button>
-    <button type="button" class="wing-toggle" id="combatMode" aria-pressed="false" aria-keyshortcuts="M" title="Switch between patrol and a MiG-29 air duel (M)" disabled><kbd aria-hidden="true">M</kbd> Air duel</button>
-    <label class="chooser" title="Choose the opposition for the next air duel round"><select id="duelSize" aria-label="Air duel opponents"><option value="1" selected>Single MiG</option><option value="2">MiG Pair</option></select></label>
-  </div>
-  <div class="loadout" aria-label="Stores remaining"><span class="sectionlabel" id="storeReadout">NEXT · A/G</span><div class="stores" id="stores" aria-hidden="true"></div><span class="count"><b id="ammo">04</b><small> / 04</small></span></div>
+  <section class="fc-panel" id="flightSetupPanel" aria-labelledby="flightSetupTitle" hidden>
+    <div class="fc-panel-head"><h2 id="flightSetupTitle">Flight setup</h2><button type="button" class="fc-close" id="flightSetupClose" aria-label="Close flight setup">×</button></div>
+    <div class="fc-systems">
+      <section aria-labelledby="fcLensTitle">
+        <h3 id="fcLensTitle">Camera</h3>
+        <label class="fc-distance" id="cameraDistanceControl" for="cameraDistance"><span>Distance</span><output id="distanceValue" for="cameraDistance">100%</output><input type="range" id="cameraDistance" aria-label="Camera distance" min="70" max="175" step="5" value="100"></label>
+        <div class="fc-options"><button type="button" id="cameraSide" class="fc-option" aria-label="Side camera on left. Switch to right" hidden>Left side</button><button type="button" id="inspectStores" class="fc-option" aria-pressed="false" title="Look under the aircraft to inspect its stores">Inspect stores</button></div>
+      </section>
+      <section aria-labelledby="fcAircraftTitle">
+        <h3 id="fcAircraftTitle">Aircraft</h3>
+        <div class="fc-options"><button type="button" class="fc-option" id="tankToggle" aria-pressed="true">Wing tanks</button>
+          <button type="button" class="fc-option" id="wingToggle" aria-label="Wingman follow" aria-pressed="true" title="Fly in formation or solo" disabled>Wingman <b aria-hidden="true">ON</b></button></div>
+        <label class="fc-opponents" for="duelSize"><span>Opponents</span><span class="fc-select"><select id="duelSize" aria-label="Air duel opponents" title="Choose the opposition for the next air duel round"><option value="1" selected>Single MiG</option><option value="2">MiG pair</option></select></span></label>
+      </section>
+    </div>
+    <button type="button" class="fc-help-toggle" id="flightHelpToggle" aria-expanded="false" aria-controls="flightHelpPanel">Flight controls <span aria-hidden="true">+</span></button>
+    <div class="fc-help" id="flightHelpPanel" hidden>
+      <p class="fc-mouse-help">Move the mouse or use arrow keys to steer. Tap the left button to roll, or hold it to boost.</p>
+      <p class="fc-touch-help">Drag to steer. Tap ROLL / BOOST to roll or hold it to boost. Keep steering with one finger while you tap another control.</p>
+      <dl class="fc-mouse-help"><div><dt>Q / E</dt><dd>Quick turn / loop</dd></div><div><dt>RMB / F</dt><dd>Fire / drop</dd></div><div><dt>G</dt><dd>Wingman fire</dd></div><div><dt>T / C</dt><dd>Target / flare</dd></div><div><dt>Space</dt><dd>Cycle camera</dd></div><div><dt>V</dt><dd>Watch downed MiG</dd></div></dl>
+      <dl class="fc-touch-help"><div><dt>MOVE</dt><dd>Turn or loop</dd></div><div><dt>FIRE / DROP</dt><dd>Use next store</dd></div><div><dt>TARGET</dt><dd>Cycle target</dd></div><div><dt>FLARE</dt><dd>Decoy in air duel</dd></div></dl>
+    </div>
+  </section>
 </div>
 </section>
-<footer class="guidebar"><div class="guides desktophelp"><span class="guide"><svg class="icon"><use href="#i-mouse"/></svg> Mouse to steer</span><span class="sep">/</span><span class="guide"><kbd>LMB</kbd> Roll <span class="hintword">· Hold to boost</span></span><span class="guide"><kbd>Q</kbd> Turn <kbd>E</kbd> Loop</span><span class="sep">/</span><span class="guide"><kbd>RMB</kbd><span>or</span><kbd>F</kbd> Fire / drop</span><span class="guide"><kbd>W</kbd> Loadout</span><span class="sep">/</span><span class="guide"><kbd>SPACE</kbd> Cycle view</span></div><div class="guides touchhint">Drag to steer <span>·</span> Tap to roll <span>·</span> Hold to boost</div></footer>
+<footer class="flight-hints" aria-label="Basic flight controls">
+  <span class="mouse-hint"><svg class="icon" aria-hidden="true"><use href="#i-mouse"/></svg>Move to steer</span>
+  <span class="mouse-hint"><kbd>LMB</kbd> Tap to roll · Hold to boost</span>
+  <span class="mouse-hint"><kbd>F</kbd> Fire / drop</span>
+  <span class="mouse-hint"><kbd>Q</kbd> Turn <kbd>E</kbd> Loop</span>
+  <span class="touch-hint">Drag to steer <i>·</i> Tap to roll <i>·</i> Hold to boost</span>
+</footer>
 </main>
 <script>
 // The mesh is authored in local units. Convert it once to the metre scale of the scenery.
@@ -6375,6 +6747,10 @@ function setPatrolLeg(phase){
   patrolLeg.hidden=!leg||!!patrol.detour;patrolLeg.textContent=leg?leg.label.toUpperCase():'';
 }
 const chartDestination=el('chartDestination');
+const chartToggle=el('chartToggle');
+chartToggle.addEventListener('click',()=>{
+  chartToggle.setAttribute('aria-expanded',String(chartToggle.getAttribute('aria-expanded')!=='true'));
+});
 chartDestination.disabled=true;
 chartDestination.addEventListener('change',()=>{
   if(!state.ready)return;
@@ -6451,31 +6827,7 @@ function updatePatrol(){
   updateRadio();
 }
 
-function wordmark(){
-  const letters=['111110/110011/110011/111110/110000/110000/110000','011110/110011/110011/111111/110011/110011/110011','111111/111111/001100/001100/001100/001100/001100','111110/110011/110011/111110/111100/110110/110011','011110/110011/110011/110011/110011/110011/011110','110000/110000/110000/110000/110000/111111/111111'];
-  const c=el('wordmark'),ctx=c.getContext('2d'),u=4;c.width=174;c.height=34;
-  function layer(dx,dy,color){ctx.fillStyle=color;letters.forEach((letter,k)=>letter.split('/').forEach((row,y)=>{for(let x=0;x<row.length;x++){if(row[x]==='1')ctx.fillRect(k*28+x*u+Math.floor((6-y)*.76)+dx,1+y*u+dy,u,u)}}))}
-  for(const [dx,dy] of [[3,5],[2,4],[1,3],[0,2],[0,0]])layer(dx,dy,'#29434a');layer(0,0,'#fff0c2');
-}
-wordmark();
-async function displayTypeface(){
-  if(!document.fonts)return;
-  try{
-    const faces=await document.fonts.load('700 36px Silkscreen','PATROL');
-    if(!faces.length)return;
-    const c=el('wordmark'),ctx=c.getContext('2d');ctx.font='700 36px Silkscreen';
-    const m=ctx.measureText('PATROL'),ascent=Math.ceil(m.actualBoundingBoxAscent),descent=Math.ceil(m.actualBoundingBoxDescent);
-    const mask=document.createElement('canvas');mask.width=Math.ceil(m.width)+5;mask.height=ascent+descent+2;
-    const g=mask.getContext('2d');g.font='700 36px Silkscreen';g.fillStyle='#fff';g.fillText('PATROL',1,ascent+1);
-    const pixels=g.getImageData(0,0,mask.width,mask.height).data,u=mask.height;
-    c.width=mask.width+Math.ceil(u*.19)+3;c.height=u+4;
-    for(const [dx,dy,col] of [[2,3,'#29434a'],[1,2,'#29434a'],[0,0,'#fff0c2']]){
-      ctx.fillStyle=col;for(let y=0;y<u;y++)for(let x=0;x<mask.width;x++)
-        if(pixels[(y*mask.width+x)*4+3]>127)ctx.fillRect(x+Math.floor((u-y)*.19)+dx,y+dy,1,1);
-    }
-  }catch{/* The built-in pixel lettering is also available offline. */}
-}
-window.addEventListener('patroltype',displayTypeface,{once:true});displayTypeface();
+
 el('stores').innerHTML=Array.from({length:4},()=>'<svg class="store" viewBox="0 0 9 25"><use href="#i-store"/></svg>').join('');
 const storeIcons=Array.from(el('stores').children);
 const storeSelect=el('storeSelect'),tankToggle=el('tankToggle');
@@ -7831,12 +8183,23 @@ function hud(){
   targetButton.hidden=!canCycleTarget();
   updateGroundReports();
   if(toastUntil&&sim.time>toastUntil){el('alert').classList.remove('show');toastUntil=0}
-  if(state.view===2)return;
+  if(state.view!==2)drawCoastChart();
+}
+
+// Chart inks follow the existing terrain swatches so every road stays in its map position.
+const chartInks={
+  '#3d6e87':'#344b57','#45989d':'#43616a','#86c8b7':'#64817e',
+  '#355c78':'#43616a','#efd99e':'#c9bb99','#d7d6a7':'#aaac91','#dab57c':'#b6ac8e',
+  '#c99669':'#a79e86','#b69e85':'#a39b86','#c3b18e':'#b3ab93','#a3939e':'#989587',
+  '#b4adb0':'#aba89a','#827d7b':'#686e68','#706d73':'#676c66','#908578':'#78796c',
+  '#dfceb5':'#bbaf97','#716c70':'#636a65','#998778':'#7c7b6c'
+};
+function drawCoastChart(){
   if(sim.time-state.mapTime>.5){
     state.mapTime=sim.time;
     for(let j=0;j<33;j++)for(let i=0;i<53;i++){
       const x=sim.pos[0]+(i-26)*46,z=sim.pos[2]+(16-j)*46;
-      navCtx.fillStyle=world.mapColor(x,z);
+      navCtx.fillStyle=chartInks[world.mapColor(x,z)]||'#b6ac8e';
       navCtx.fillRect(i,j,1,1);
     }
     // At chart scale the paved strip is narrower than one sample. Trace both
@@ -7849,7 +8212,7 @@ function hud(){
         const south=inlandRoads(lo),north=inlandRoads(hi),west=south[lane],east=north[lane];
         const tileOffset=8192*Math.round((west-sim.pos[0])/8192);
         const a=26+Math.round((west-tileOffset-sim.pos[0])/46),b=26+Math.round((east-tileOffset-sim.pos[0])/46);
-        navCtx.fillStyle=lane?'#998778':'#716c70';navCtx.fillRect(Math.min(a,b),j,1+Math.abs(a-b),1);
+        navCtx.fillStyle=lane?'#7c7b6c':'#636a65';navCtx.fillRect(Math.min(a,b),j,1+Math.abs(a-b),1);
         if(!lane&&z>=dividedStretch[0]&&z<=dividedStretch[3]){
           const westA=26+Math.round((west-carriageSeparation(lo)/south[2]-tileOffset-sim.pos[0])/46);
           const westB=26+Math.round((east-carriageSeparation(hi)/north[2]-tileOffset-sim.pos[0])/46);
@@ -7859,14 +8222,28 @@ function hud(){
     }
   }
   mapCtx.imageSmoothingEnabled=false;mapCtx.drawImage(navCache,0,0,106,66);
-  mapCtx.fillStyle='#26293655';for(let i=0;i<106;i+=21)mapCtx.fillRect(i,0,1,66);for(let j=0;j<66;j+=16)mapCtx.fillRect(0,j,106,1);
+  if(daylight[1]>.01){
+    mapCtx.fillStyle='rgba(13,25,38,'+(.48*daylight[1])+')';
+    mapCtx.fillRect(0,0,106,66);
+  }
+  mapCtx.fillStyle='#18253030';for(let i=0;i<106;i+=21)mapCtx.fillRect(i,0,1,66);for(let j=0;j<66;j+=16)mapCtx.fillRect(0,j,106,1);
+  const dest=patrol.detour||patrol.target;
+  if(dest&&!fx.duel){
+    const dx=(dest.x-sim.pos[0])/23,dy=(sim.pos[2]-dest.z)/23;
+    const distance=Math.hypot(dx,dy),clip=Math.max(1,Math.abs(dx)/47,Math.abs(dy)/27);
+    mapCtx.fillStyle='#f3bf7d';
+    for(let d=9;d<distance/clip-4;d+=5){
+      const x=Math.round(53+d*dx/distance),y=Math.round(33+d*dy/distance);
+      mapCtx.fillRect(x,y,2,1);
+    }
+  }
   for(const [i,base] of coast.bases.entries()){
     let dx=base.x-sim.pos[0],dz=base.z-sim.pos[2];
     dx-=8192*Math.round(dx/8192);dz-=8192*Math.round(dz/8192);
     const x=Math.round(53+dx/23),y=Math.round(33-dz/23);
     if(x<3||x>102||y<4||y>61)continue;
-    mapCtx.fillStyle='#485854';mapCtx.fillRect(x-3,y-3,7,7);
-    mapCtx.fillStyle='#f0e6c5';
+    mapCtx.fillStyle='#424d50';mapCtx.fillRect(x-3,y-3,7,7);
+    mapCtx.fillStyle='#d5d8c8';
     if(i===0){mapCtx.fillRect(x-1,y-2,1,5);mapCtx.fillRect(x+1,y-2,1,5);}
     else if(i===1){mapCtx.fillRect(x-2,y-1,2,3);mapCtx.fillRect(x+1,y-1,2,3);}
     else{mapCtx.fillRect(x,y-2,1,4);mapCtx.fillRect(x-2,y+2,5,1);mapCtx.fillRect(x-1,y-2,3,1);}
@@ -7877,11 +8254,10 @@ function hud(){
     dx-=8192*Math.round(dx/8192);dz-=8192*Math.round(dz/8192);
     const x=Math.round(53+dx/23),y=Math.round(33-dz/23);
     if(x>3&&x<102&&y>4&&y<61){
-      mapCtx.fillStyle='#594d43';mapCtx.fillRect(x-3,y-4,7,9);
-      mapCtx.fillStyle='#ead6aa';mapCtx.fillRect(x-1,y-3,3,1);mapCtx.fillRect(x-1,y,3,1);mapCtx.fillRect(x-1,y+3,3,1);
+      mapCtx.fillStyle='#4a4d4b';mapCtx.fillRect(x-3,y-4,7,9);
+      mapCtx.fillStyle='#d7ceb2';mapCtx.fillRect(x-1,y-3,3,1);mapCtx.fillRect(x-1,y,3,1);mapCtx.fillRect(x-1,y+3,3,1);
     }
   }
-  const dest=patrol.detour||patrol.target;
   if(dest){
     const dx=(dest.x-sim.pos[0])/23,dy=(sim.pos[2]-dest.z)/23;
     const edge=Math.max(1,Math.abs(dx)/47,Math.abs(dy)/27);
@@ -7889,11 +8265,11 @@ function hud(){
     mapCtx.save();mapCtx.translate(x,y);
     if(edge>1){
       mapCtx.rotate(Math.atan2(dx,-dy));
-      mapCtx.fillStyle='#2d322c';mapCtx.fillRect(-3,-3,7,7);
-      mapCtx.fillStyle='#ffdf92';mapCtx.fillRect(0,-3,1,5);mapCtx.fillRect(-1,-2,3,2);mapCtx.fillRect(-2,0,5,1);
+      mapCtx.fillStyle='#253440';mapCtx.fillRect(-3,-3,7,7);
+      mapCtx.fillStyle='#ffb860';mapCtx.fillRect(0,-3,1,5);mapCtx.fillRect(-1,-2,3,2);mapCtx.fillRect(-2,0,5,1);
     }else{
-      mapCtx.fillStyle='#292d2a';mapCtx.fillRect(-3,-3,7,7);
-      mapCtx.fillStyle='#ffdf92';mapCtx.fillRect(0,-3,1,1);mapCtx.fillRect(0,3,1,1);
+      mapCtx.fillStyle='#253440';mapCtx.fillRect(-3,-3,7,7);
+      mapCtx.fillStyle='#ffb860';mapCtx.fillRect(0,-3,1,1);mapCtx.fillRect(0,3,1,1);
       for(const side of [-1,1]){
         mapCtx.fillRect(side,-2,1,1);mapCtx.fillRect(side,2,1,1);
         mapCtx.fillRect(2*side,-1,1,3);
@@ -7902,12 +8278,12 @@ function hud(){
     mapCtx.restore();
   }
   mapCtx.save();mapCtx.translate(53,33);mapCtx.rotate(sim.heading);if(fx.duel)mapCtx.scale(.55,.55);
-  mapCtx.fillStyle='#2b2934';mapCtx.fillRect(-5,-1,11,3);mapCtx.fillRect(-2,-7,5,15);mapCtx.fillStyle='#ffe49c';mapCtx.fillRect(-1,-7,3,13);mapCtx.fillRect(-4,0,9,2);mapCtx.fillRect(-2,4,5,2);mapCtx.restore();
+  mapCtx.fillStyle='#172533';mapCtx.fillRect(-5,-1,11,3);mapCtx.fillRect(-2,-7,5,15);mapCtx.fillStyle='#fff6df';mapCtx.fillRect(-1,-7,3,13);mapCtx.fillRect(-4,0,9,2);mapCtx.fillRect(-2,4,5,2);mapCtx.restore();
   if(fx.duel?.playerHP>0)for(const m of fx.duel.enemies){
     if(!m.hp)continue;
     const x=Math.round(53+(m.pos[0]-sim.pos[0])/23),y=Math.round(33-(m.pos[2]-sim.pos[2])/23);
-    mapCtx.fillStyle='#674543';mapCtx.fillRect(x-2,y-2,5,5);
-    mapCtx.fillStyle='#ffad86';
+    mapCtx.fillStyle='#47343a';mapCtx.fillRect(x-2,y-2,5,5);
+    mapCtx.fillStyle='#ff937c';
     if(m===fx.duel.target){mapCtx.fillRect(x-1,y,3,1);mapCtx.fillRect(x,y-1,1,3);}
     else{
       mapCtx.fillRect(x-1,y-1,3,1);mapCtx.fillRect(x-1,y+1,3,1);
@@ -7915,6 +8291,7 @@ function hud(){
     }
   }
 }
+
 const lockLetters=['100100100100111','111101101101111','111100100100111','101101110101101'];
 function drawDuelGuide(frame,d){
   const project=p=>projectFlightPoint(frame,p);
@@ -8065,5 +8442,44 @@ async function start(){
 start();
 })();
 
+(() => {
+  const setup = document.getElementById('flightSetupPanel');
+  const toggle = document.getElementById('flightSetupToggle');
+  const close = document.getElementById('flightSetupClose');
+  const help = document.getElementById('flightHelpPanel');
+  const helpToggle = document.getElementById('flightHelpToggle');
+
+  function showHelp(open) {
+    help.hidden = !open;
+    helpToggle.setAttribute('aria-expanded', String(open));
+    helpToggle.lastElementChild.textContent = open ? '−' : '+';
+  }
+  function showSetup(open, returnFocus = false) {
+    setup.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    if (!open) {
+      showHelp(false);
+      if (returnFocus) toggle.focus({preventScroll:true});
+    }
+  }
+  toggle.addEventListener('click', e => {
+    const open = setup.hidden;
+    showSetup(open);
+    if (open && e.detail === 0) close.focus({preventScroll:true});
+  });
+  close.addEventListener('click', () => showSetup(false, true));
+  helpToggle.addEventListener('click', () => showHelp(help.hidden));
+  setup.addEventListener('keydown', e => e.stopPropagation());
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !setup.hidden) {
+      e.preventDefault();
+      e.stopPropagation();
+      showSetup(false, true);
+    }
+  }, true);
+  document.addEventListener('pointerdown', e => {
+    if (!setup.hidden && !setup.contains(e.target) && !toggle.contains(e.target)) showSetup(false);
+  }, true);
+})();
 </script>
 </body></html>
